@@ -6,3 +6,4 @@ body-parser
 cors
 mongoose
 express
+nodemailer - send email
