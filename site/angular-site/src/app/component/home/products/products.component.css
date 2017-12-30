@@ -1,0 +1,34 @@
+
+.single-price {
+    font-size: 25px;
+    font-weight: 800;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+.homeshoppage {
+    text-align: center;
+    
+}
+.homeshoppage:hover {
+    box-shadow: 2px 3px 20px pink inset;
+    color:black;
+}
+
+ a:hover {
+    color:#D879A1;
+}
+
+.homeshoppage img {
+    padding: 10px 0;
+    height: auto;   
+}
+
+a.button-price:hover{
+    color: #ffffff;
+}
+.buttons {
+    margin: 0;
+}
+
+

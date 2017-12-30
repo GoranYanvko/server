@@ -1,0 +1,30 @@
+<div *ngIf="loadeDateProducts">
+    <h2 class="article">Продукти, които избрахме за вас</h2>
+   
+    <div class="col-md-3 col-sm-3 homeshoppage" *ngFor="let product of products" >
+        <div class="product">
+            <div class="image">
+                    <a [routerLink]="['product', product.url]">
+                    <img [src]="product.img" alt="" class="img-responsive image1">
+                </a>
+            </div>
+            <!-- /.image -->
+            <div class="text">
+                <h3>
+                    <a [routerLink]="['product', product.url]">
+                        {{product.type}} <br/> {{product.title}}
+                    </a>
+                </h3>
+                <p class="single-price">{{product.price}} лв.</p>
+                <p class="button">
+                    <a [routerLink]="['product', product.url]" class="btn btn-default button-price">
+                        <i class="fa fa-shopping-cart"></i> Купи</a>
+                </p>
+            </div>
+            <!-- /.text -->
+        </div>
+        <!-- /.product -->
+    </div>
+
+
+</div>

@@ -1,0 +1,29 @@
+.well {
+    margin-top: 20px;
+    background: #90c1d9;
+
+}
+
+.order {
+    color:"black";
+}
+
+form {
+    padding-bottom: 30px;
+}
+
+.btnsearch {
+    background: #D879A1;
+}
+
+.form-group  {
+    margin-bottom: 0; 
+
+}
+
+input[type="text"]
+{
+    font-weight: 900;
+    text-align: center;
+}
+

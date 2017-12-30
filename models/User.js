@@ -28,7 +28,7 @@ User.seedAdminUser = async () => {
             roles: ['Admin']
         });
     } catch (e) {
-        console.log(e);
+        
     }
 };
 
@@ -46,7 +46,7 @@ module.exports.addUser = function (newUser, calback) {
 
 module.exports.chekPass = function (pass, hash, calback) {
    bcrypt.compare(pass, hash, (err, isMatch)=>{
-       console.log(isMatch);
+      
        calback(null, isMatch)
    })
  }

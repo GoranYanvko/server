@@ -1,0 +1,19 @@
+select {
+    margin-bottom: 5px;
+}
+
+.Приета {
+    background: rgba(49, 238, 65, 0.3);
+}
+
+.Изпратена {
+    background: rgba(38, 118, 238, 0.3);
+}
+
+.Доставена {
+    background: rgba(182, 4, 252, 0.3);
+}
+
+.Отказана {
+    background: rgba(252, 4, 4, 0.3);
+}

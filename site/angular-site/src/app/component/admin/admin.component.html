@@ -1,0 +1,7 @@
+<admin-home (changeView)="changeComponent($event)" *ngIf="home"></admin-home>
+<admin-new-product *ngIf="newProduct" (changeView)="changeComponent($event)"></admin-new-product>
+<admin-new-article *ngIf="article" (changeView)="changeComponent($event)"></admin-new-article>
+<admin-orders *ngIf="orders" (changeView)="changeComponent($event)"></admin-orders>
+
+
+

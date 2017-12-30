@@ -1,0 +1,295 @@
+
+<div class="container" >
+<table id="cart" class="table table-hover table-condensed" *ngIf="isCart" >
+    				<thead>
+						<tr>
+							<th style="width:50%">Продукти</th>
+							<th style="width:10%">Единична цена</th>
+							<th style="width:8%">Количество</th>
+							<th style="width:22%" class="text-center">Крайна цена за продукт</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let product of cart">
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img [src]="product.product.img" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin">{{product.product.type}} {{product.product.title}}</h4>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{product.product.price}} лв.</td>
+							<td data-th="Quantity">
+								<input [id]="product.product._id" type="number" class="form-control text-center goran" [value]="product.qty" min="0" (change)="onChange($event)">
+							</td>
+							<td data-th="Subtotal" class="text-center">{{product.totalProductPrice | number:'2.2-5'}} лв.</td>
+							<td class="actions" data-th="">
+								<button class="btn btn-info btn-sm btn-refresh"><i class="fa fa-refresh"></i></button>
+								<button [id]="product.product._id" class="btn btn-danger btn-sm btn-refresh" (click)="remove($event)"><i class="fa fa-trash-o"></i></button>								
+							</td>
+						</tr>
+					
+					</tbody>
+					<tfoot>
+							<tr>
+									<td class="thborder"></td>
+									<td colspan="2"><h2 class="valcher">Доставка:</h2></td>
+									<td class="text-center">
+											<label class="adress" for="adress"></label>
+											<input type="radio" 
+											 name="adress" value="Адрес"
+											  id="adress"
+											  checked="checked" name="typeOfDelivary" 
+											  name="typeOfDelivary" 
+											  [(ngModel)]="orderForm.typeOfDelivary"
+											  (click)="getDelivary($event)"
+												> Доставка до Адрес + {{delivary.address | number:'1.2-5'}}лв
+											<br/>
+											<label class="adress" for="adress"></label>
+											<input type="radio" 
+											 name="adress" value="Офис"
+											  id="adress"
+											  name="typeOfDelivary" 
+											  (click)="getDelivary($event)"
+											  name="typeOfDelivary" 
+											  [(ngModel)]="orderForm.typeOfDelivary"
+												> Доставка до Еконт + {{delivary.office | number:'1.2-5'}}лв
+											<br/>
+
+									</td>
+									<td class="hidden-xs"><strong>5 лв.</strong></td>
+							</tr>
+							<tr>
+								<td class="thborder thbordertop"></td>
+								<td colspan="2"><h2 class="valcher">Общо:</h2></td>
+								<td class="text-center"><strong>{{totalPrice | number:'2.2-5'}} лв.</strong></td>
+								<td class="hidden-xs"></td>
+						</tr>
+
+						<tr>
+							<td class="thborder thbordertop"></td>
+							<td colspan="2" class="right"><h2 class="valcher">Ваучер за отстъпка</h2></td>
+							<td class='right left'><input type="text"></td>
+							<td class='left'><a href="#" class="btn btn-success ">Въведи </a></td>
+							
+						</tr>
+					</tfoot>
+				</table>
+				<div *ngIf="isCart">
+				<div id="payment_address" class="qc-step" data-col="1" data-row="2">
+						<div class="">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<span class="icon">
+											<i class="fa fa-book"></i>
+										</span>
+										<span class="text">Форма за Поръчка</span>
+									</h4>
+								</div>	
+								<div class="panel-body">								
+									<form id="payment_address_form" class="form-horizontal" novalidate="novalidate">
+<!-- Addres form  --> 
+
+
+						<div id="payment_address_firstname_input" class="text-input form-group sort-item required">				
+								<div class="col-xs-3" [hidden]="firstName.valid || firstName.pristine">
+								</div>
+							<div>
+									<small class="col-xs-7 err" [hidden]="firstName.valid || firstName.pristine">
+											*Името трябва да съдържа между 1 и 18 символа!
+									  </small>
+
+							</div>
+							<div class="col-xs-3">
+											  <label class="control-label" for="payment_address_firstname"> 
+												<span class="text" title=""> Име:</span> 
+											  </label>
+											</div>
+											
+											<div class="col-xs-7"> 
+											  <input type="text"
+											   class="form-control  required firstname" 
+											   autocomplete="off" 
+											   placeholder="* Име" 
+											   name="firstName" 
+											   [(ngModel)]="orderForm.firstName"
+											   #firstName="ngModel"
+											   minlength="3"
+											   maxlength="18"
+											   >
+											</div>
+							<!-- Last Name				 -->
+										  </div>
+										  <div id="payment_address_lastname_input" class="text-input form-group  sort-item " data-sort="1">
+												<div class="col-xs-3" [hidden]="lastName.valid || lastName.pristine">
+													</div>
+												<div>
+													<small class="col-xs-7 err" [hidden]="lastName.valid || lastName.pristine">
+													*Фамилията трябва да съдържа между 1 и 18 символа!
+													 </small>
+												</div>
+											<div class="col-xs-3">
+											  <label class="control-label" for="payment_address_lastname"> 
+												<span class="text" title=""> Фамилия:</span> 
+											  </label>
+											</div>
+											<div class="col-xs-7"> 
+											  <input type="text"
+													  class="form-control  required lastname"
+													  placeholder="* Фамилия"
+													  name="lastName" 
+													  [(ngModel)]="orderForm.lastName"
+													  #lastName="ngModel"
+													  minlength="3"
+													  maxlength="18"
+													  >
+											</div>
+										  </div>
+										  <!-- Email -->
+										  <div id="payment_address_email_input" class="text-input form-group  sort-item   required" data-sort="2">
+											<div class="col-xs-3">
+											  <label class="control-label" for="payment_address_email"> 
+												<span class="text" title=""> Ел. поща:</span> 
+											  </label>
+											</div>
+											<div class="col-xs-7"> 
+											  <input type="email"
+											  class="form-control  email"
+											   placeholder="*Email"
+											   name="email" 
+											   [(ngModel)]="orderForm.email"
+									
+											   >
+											</div>
+										  </div>
+								<!-- Phone		   -->
+
+										  <div class="text-input form-group  sort-item   required" data-sort="4">
+												<div class="col-xs-3" [hidden]="phone.valid || phone.pristine">
+													</div>
+												<div>
+													<small class="col-xs-7 err" [hidden]="phone.valid || phone.pristine">
+													*Телефона трябва да съдържа между 8 и 15 цифри!
+													 </small>
+												</div>
+											<div class="col-xs-3">
+											  <label class="control-label" for="payment_address_telephone"> 
+												<span class="text" title=""> Телефон:</span> 
+											  </label>
+											</div>
+											<div class="col-xs-7"> 
+											  <input 
+											  type="text" 
+											  class="form-control  required telephone" 
+											  placeholder="* Телефон" 
+											  name="phone" 
+											  [(ngModel)]="orderForm.phone"
+											  #phone="ngModel"
+											  minlength="8"
+											  maxlength="15"
+											  >
+											</div>
+										  </div>
+										  <div class="sort-item heading " data-sort="8">
+											<i class="fa fa-truck"></i>
+											Адрес за доставка
+											<hr>
+									 	</div>
+										
+									<div id="payment_address_address_1_input" class="text-input form-group  sort-item   required" data-sort="11">
+											<div class="col-xs-3" [hidden]="address.valid || address.pristine">
+												</div>
+											<div>
+												<small class="col-xs-7 err" [hidden]="address.valid || address.pristine">
+												*Адреса трябва да е между 6 и 128 символа!
+												  </small>
+											</div>	
+										
+										<div class="col-xs-3">
+
+											  <label class="control-label" for="payment_address_address_1"> 
+												<span class="text" title=""> Адрес за доставка:</span> 
+											  </label>
+											</div>
+											<div class="col-xs-7"> 
+											  <input type="text"
+											  class="form-control  required address_1"
+											  placeholder="* Адрес"
+											  name="address" 
+											  [(ngModel)]="orderForm.address"
+											  #address="ngModel"
+											  minlength="6"
+											  maxlength="128"
+												   >
+											</div>
+										  </div>
+										  <div  class="text-input form-group  sort-item   required" data-sort="13">
+												<div class="col-xs-3" [hidden]="city.valid || city.pristine">
+													</div>
+												<div>
+													<small class="col-xs-7 err" [hidden]="city.valid || city.pristine">
+													*Населеното място трябва да е с между 3 и 20 символа!
+													  </small>
+												</div>	
+											
+											<div class="col-xs-3">
+											  <label class="control-label" for="payment_address_city"> 
+												<span class="text" title=""> Град:</span> 
+											  </label>
+											</div>
+											<div class="col-xs-7"> 
+											  <input 
+													  type="text"
+													 class="form-control  required city"
+													 placeholder="* Град/Село" 
+													 name="city" 
+											  		[(ngModel)]="orderForm.city"
+											 		 #city="ngModel"
+											  		minlength="3"
+											 		 maxlength="20"
+													 >
+											</div>
+										  </div>
+										  <div id="payment_address_postcode_input" class="text-input form-group  sort-item hidden" data-sort="14">
+											<div class="col-xs-3">
+											  <label class="control-label" for="payment_address_postcode"> 
+												<span class="text" title=""> Пощенски код:</span> 
+											  </label>
+											</div>
+											<div class="col-xs-3"> 
+											  <input type="text" name="payment_address.postcode" id="payment_address_postcode" value="" class="form-control  not-required postcode" autocomplete="off" placeholder=" Пощенски код" data-rule-minlength="2" data-msg-minlength="Пощенският код трябва да съдържа между 2 и 10 символа!" data-rule-maxlength="10" data-msg-maxlength="Пощенският код трябва да съдържа между 2 и 10 символа!">
+											</div>
+										  </div><div id="payment_address_country_id_input" class="select-input form-group  sort-item  country " data-sort="15">
+									  </div>
+
+									 <div id="payment_address_agree_input" class="checkbox-input form-group sort-item   required" data-sort="19">
+
+												<div class="col-xs-6">
+												  <label for="payment_address_agree" class="control-label">
+													  <input type="hidden" name="payment_address.agree" value="0">
+													  <input type="checkbox" autocomplete="off" name="payment_address.agree" id="payment_address_agree" class="validate required" required="" value="1" checked="checked">
+						
+													  <span title="">Прочетох и се съгласих с <a class="colorbox" href="#" alt="Декларация за поверителност"><b>Декларация за поверителност</b></a></span> 
+													</label>
+												</div>
+										</div>
+									<div class="text-center">
+											<flash-messages></flash-messages>
+											<button (click)="onSubmit()" class="btn btn-success">Поръчай</button>
+
+									</div>
+									</form>
+									
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+</div>
+
+<div *ngIf="!isCart" >
+<div class="center">	Количката ви е празна</div>
+</div>

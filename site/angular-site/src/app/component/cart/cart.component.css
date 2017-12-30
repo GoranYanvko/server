@@ -1,0 +1,98 @@
+.table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+
+#cart {
+    margin-top: 30px;
+}
+#cart button {
+    background: purple;
+    border: none;
+    margin-left: 20px;
+    position: relative;
+    padding: 15px;
+}
+
+h4 {
+    line-height: 19px;
+    margin-bottom: 3px;
+}
+
+ input, button, select, textarea {
+    margin-bottom: 6px;
+    margin-top: 0;
+	padding: 13px;
+}
+.valcher {
+	font-size:25px;
+   margin-top: auto; 
+}
+
+.thborder {
+	border-left: none;
+	border-bottom: none;
+}
+
+.thbordertop  {
+	border-top:none
+}
+
+.right {
+	border-right: none;	
+}
+.left {
+	border-left: none;
+}
+
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control{
+		width:20%;
+		display: inline !important;
+	}
+	.actions .btn{
+		width:36%;
+		margin:1.5em 0;
+	}
+	
+	.actions .btn-info{
+		float:left;
+	}
+	.actions .btn-danger{
+		float:right;
+	}
+
+	.nomargin {
+		color: #fff;
+	}
+	
+	table#cart thead { display: none; }
+	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+	table#cart tbody tr td:first-child { background: #333; color: #fff; }
+	table#cart tbody td:before {
+		content: attr(data-th); font-weight: bold;
+		display: inline-block; width: 8rem;
+	}
+	
+	#cart button {
+        background: purple;
+        border: none;
+        margin-left: 0;
+        position: relative;
+        padding: 0;
+	}
+	.btn-refresh {
+		margin-left: 0px;
+	}
+	err {
+		color:red;
+	}
+    .actions .btn {
+        width: 20%;
+        margin: 1.5em 0;
+    }
+	
+	table#cart tfoot td{display:block; }
+	table#cart tfoot th{display:block; }
+	table#cart tfoot td .btn{display:block;}
+	
+}

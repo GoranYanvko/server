@@ -1,0 +1,11 @@
+.price {
+    width:80%; 
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type="checkbox"]:hover {
+    height: 20px;
+}

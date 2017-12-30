@@ -34,10 +34,14 @@ const user = require('./route/user')
 const email = require('./route/email')
 const product = require('./route/product')
 const orders = require('./route/orders')
+const article = require('./route/article')
+const cart = require('./route/cart')
 app.use('', user)
 app.use('/email', email)
 app.use('/product', product)
 app.use('/orders', orders)
+app.use('/article', article )
+app.use('/cart', cart )
 
 //404 Not Found
 app.all('*', (req, res) => {
@@ -48,7 +52,7 @@ app.all('*', (req, res) => {
 
 
 
-const port = 3000;
+const port = 3001;
 
 app.listen(port, ()=>{
     console.log('Сървара е пуснат на порт ' + port)

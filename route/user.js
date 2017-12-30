@@ -7,6 +7,7 @@ const jswt = require('jsonwebtoken')
 const config = require('./../config/db')
 
 const sendMail = false;
+const option = require('./../config/options')
 
 router.get('/', (req,res)=>{
     res.json({success:true, msg:'Сървара работи'})  
@@ -19,8 +20,8 @@ router.post('/register', (req,res)=>{
         } else {
             let newUser = new User(req.body);
             User.addUser(newUser);
-            if(sendMail) {
-               require('./../addons/mail')(newUser)
+            if(option.mail) {
+               require('./../addons/mail')('register', newUser)
             }
                res.json('Регистрацията премина успешно имате изпратена поща')
              res.end();         
@@ -53,6 +54,7 @@ router.post('/login', (req,res)=>{
 })
 
 router.post('/new', passport.authenticate('jwt', {session:false}), (req,res,next)=>{
+    
    res.json('ok')
 })
 
