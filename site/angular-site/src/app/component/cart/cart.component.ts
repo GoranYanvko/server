@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     
-    this.orderForm = new OrderFormModel('', '', '', '', '', 'Адрес', '')
+    this.orderForm = new OrderFormModel('', '', '', '', '', 'Адрес', '', true)
    this.loadeDate();
   }
 
@@ -94,10 +94,12 @@ export class CartComponent implements OnInit {
      this.orderForm.lastName === '' ||
       this.orderForm.phone === '' ||
       this.orderForm.city === '' ||
-      this.orderForm.address  === ''
+      this.orderForm.address  === '' 
     ) {
       this.msg.show('Формата е попълнена грешно', { cssClass: 'alert-danger', timeout: 4000 } )
-    } else if (
+    } else if (this.orderForm.confirmConditions === false) {
+      this.msg.show('За да направите поръчка, трябва да се съгласите с общите условия', { cssClass: 'alert-danger', timeout: 4000 } )
+    }else if (
       isNaN(Number(this.orderForm.phone))
     ) {
       this.msg.show('Телефоният номер трябва да съдържа само цифри!', { cssClass: 'alert-danger', timeout: 4000 } )

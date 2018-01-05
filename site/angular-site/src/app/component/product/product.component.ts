@@ -31,6 +31,7 @@ export class ProductComponent implements OnInit {
   orderPrice;
  
   ngOnInit() {
+    window.scrollTo(0, 0)
     this.orderForm = new FastOrderFormModel('','','','','Адрес','');
     let url = this.router.snapshot.params['url'];
     this.http.getSinelProduct({'url':url}).subscribe(product=>{

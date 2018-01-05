@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
-import {Observable} from "rxjs"
+import { SliderServices } from '../../../core/service/slider.service';
 
 @Component({
   selector: 'app-slide',
@@ -8,18 +7,21 @@ import {Observable} from "rxjs"
   styleUrls: ['./slide.component.css']
 })
 export class SlideComponent implements OnInit {
-  imgArr:Array<String> = [
-   'https://arteric.com/sites/default/files/2017-09/img-sxsw-live-coverage-thumbnail.jpg',
-   'https://media.licdn.com/media/AAEAAQAAAAAAAANbAAAAJDE5NjBkNDk1LTY3ZGQtNDA0NS04YTJiLTdkNmU3NjZiNjI3Mg.png',
-   'https://dianesieg.com/wp-content/uploads/2017/02/heart-tree-1024x576.jpg'
-  ];
-  img;
+  imgArr:Array<String>;
+  img = '';
+  url = '';
   num = 0;
-  constructor(private cd: ChangeDetectorRef) { }
+  
+  constructor(private http: SliderServices) { }
 
   ngOnInit() {
+    this.http.getSlider().subscribe(data=>{
+      if(data['success']) {
+        console.log(data['slider'])
+      this.imgArr=data['slider']
+      }
     this.loadeImg()
- 
+  })
   }
 
   next() {
@@ -42,6 +44,7 @@ export class SlideComponent implements OnInit {
   }
 
   loadeImg() {
-    this.img = this.imgArr[this.num];
+    this.img = this.imgArr[this.num]['img'];
+    this.url = this.imgArr[this.num]['url']
   }
 } 

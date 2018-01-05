@@ -3,9 +3,11 @@
 
   <button href="#" class="control_prev" (click)="prev()">
     <</button>
-
       <ul>
         <li>
-          <img [src]="img" class="responsive"></li>
+          <a [routerLink]="['product', url]">
+          <img [src]="img" class="responsive">
+        </a>
+      </li>
       </ul>
 </div>

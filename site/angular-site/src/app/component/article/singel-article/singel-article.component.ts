@@ -17,6 +17,7 @@ export class SingelArticleComponent implements OnInit {
   constructor(private router: ActivatedRoute, private http:ArticleServices) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0)
     let url = this.router.snapshot.params['url'];
     this.http.singlArticle({url:url}).subscribe(article=>{
       if(article['success']) {

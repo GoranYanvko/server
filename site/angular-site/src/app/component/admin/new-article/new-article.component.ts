@@ -14,6 +14,7 @@ export class NewArticleComponent implements OnInit {
   constructor(private http: ArticleServices, private msg: FlashMessagesService, private router: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0)
     this.articleForm = new  ArticleFormModel('', '', '', '');
   }
 

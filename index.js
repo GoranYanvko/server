@@ -15,7 +15,6 @@ app.use(cors())
 mongoose.Promise = global.Promise
 mongoose.connect(db.database, {useMongoClient: true}, (err)=>{
     if(err) {
-        console.log(err);
         console.log('Има проблем с базата данни');
     } else {
     console.log('ДБ е свръзана');
@@ -35,13 +34,15 @@ const email = require('./route/email')
 const product = require('./route/product')
 const orders = require('./route/orders')
 const article = require('./route/article')
-const cart = require('./route/cart')
+const cart = require('./route/cart');
+const slider = require('./route/slider');
 app.use('', user)
 app.use('/email', email)
 app.use('/product', product)
 app.use('/orders', orders)
 app.use('/article', article )
 app.use('/cart', cart )
+app.use('/slider', slider )
 
 //404 Not Found
 app.all('*', (req, res) => {

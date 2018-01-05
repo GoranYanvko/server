@@ -17,11 +17,18 @@ export const httpConfig = {
     updateCart: '/cart/updateCart',
     removeProductFromCart: '/cart/delete',
 
+
     //Статии
     addArticle: '/article/add',
     getNumOfArticle: '/article/getArticle',
     getCountOfArticle: '/article/getCount',
-    getSinglArticle: '/article/singlArticle'
+    getSinglArticle: '/article/singlArticle',
+
+    //Slider
+    getSlider: '/slider',
+    setSlider: '/slider/saveSlider',
+    remove: '/slider/delete',
+    update: '/slider/update'
 
 
 }

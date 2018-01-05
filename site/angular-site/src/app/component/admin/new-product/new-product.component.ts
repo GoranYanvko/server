@@ -13,6 +13,7 @@ export class NewProductComponent implements OnInit {
   constructor(private http: ProductServices, private msg: FlashMessagesService) { }
   productForm: NewProductModel;
   ngOnInit() {
+    window.scrollTo(0, 0)
     this.productForm = new NewProductModel('', '', '', 0, 0, 0, '', '', '', true)
   }
 

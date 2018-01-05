@@ -69,29 +69,16 @@
                       <!-- END Main Menu -->
                   </div>
 
-                  <div class="col-sm-2 site-header text-right" *ngIf='!authService.isTokenLive()'>
-                      <div class="search-toggle" >
-                          <a href="#" class="search-toggle-btn fa fa-search"></a>
-                          <div class="search-toggle-wrapper">
-                              <div id="search" class="suggest-search input-group search-bar">
-                                  <span class="input-group-btn">
-                                       <button type="button" class="fa fa-search"></button>
-                                  </span>
-                              </div>
-                          </div>
-                      </div>
-                      <a [routerLink]="['login']" class="fa fa-user"></a>
+                  <div class="col-sm-2 site-header text-right " *ngIf='!authService.isTokenLive()'>
+                    <div class="search-toggle" >
+                        <a [routerLink]="['login']" class="fa fa-user"></a>
                             <a [routerLink]="['cart']" class="fa fa-shopping-basket"></a>
-                              <span id="cart-total">0</span>
-                      
+                    </div>                   
                   </div>
-
                   <div class="col-sm-2 site-header text-right" *ngIf='authService.isTokenLive()'>
                        <a [routerLink]="['goran']">Администрация</a>
                        <a href="#" (click)="logout()">Изход</a>  
-                  </div>
-                    
-               
+                  </div>             
               </div>
 
              

@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private http:OrderServices) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0)
     this.allOrdersToday();
   }
 
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   @Output() changeView: EventEmitter<any> = new EventEmitter();
 
   onClick(e) {
+    console.log(e);
     let value = 'article';
     let string = e.target.innerText.trim();
     if (string === 'НОВ ПРОДУКТ') {
@@ -36,6 +38,9 @@ export class HomeComponent implements OnInit {
       value = 'orders';
     } else if (string === "ПОТРЕБИТЕЛИ"){
       value = 'users';
+    } else if (string === 'СЛАЙДЕР') {
+      console.log(string);
+      value = 'slider'
     }
     this.changeView.emit(value);
   }

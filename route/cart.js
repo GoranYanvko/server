@@ -111,7 +111,6 @@ router.post('/getCart', (req, res, next) => {
         }
     })
         .then(cart => {
-            console.log(cart);
             res.json(cart);
         })
 })
