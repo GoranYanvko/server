@@ -8,16 +8,17 @@ import { SliderServices } from '../../../core/service/slider.service';
 })
 export class SlideComponent implements OnInit {
   imgArr:Array<String>;
-  img = '';
-  url = '';
+  img;
+  url;
   num = 0;
-  
+  data:boolean = false;
+
   constructor(private http: SliderServices) { }
 
   ngOnInit() {
     this.http.getSlider().subscribe(data=>{
       if(data['success']) {
-        console.log(data['slider'])
+        this.data = true;
       this.imgArr=data['slider']
       }
     this.loadeImg()

@@ -4,6 +4,7 @@ import { ProductServices } from '../../core/service/product.service';
 import { FastOrderFormModel } from '../../core/models/input-models/fast-order-form.models';
 import { OrderServices } from '../../core/service/order.service';
 import { FlashMessagesService } from 'angular2-flash-messages/module/flash-messages.service';
+import { SeoServices } from '../../core/service/seo.service';
 
 
 @Component({
@@ -17,15 +18,16 @@ export class ProductComponent implements OnInit {
      private http: ProductServices,
     private order: OrderServices,
     private redirect: Router,
-    private msg: FlashMessagesService
+    private msg: FlashMessagesService,
+    private seo: SeoServices,
   ) { }
 
   findProduct:Boolean = false;
   product;
   qty = 1;
   description:Boolean = true;
-  delivary:Boolean = false;
-  comments:Boolean = false;
+  content:Boolean = false;
+  upotreba:Boolean = false;
   orderForm: FastOrderFormModel;
   delviaryPrice = 5;
   orderPrice;
@@ -35,9 +37,11 @@ export class ProductComponent implements OnInit {
     this.orderForm = new FastOrderFormModel('','','','','Адрес','');
     let url = this.router.snapshot.params['url'];
     this.http.getSinelProduct({'url':url}).subscribe(product=>{
+     
       if(product['success']) {
           this.findProduct = true;
           this.product = product['product'];
+          this.seo.changeTitle(this.product['type'] + ' ' + this.product['title'] + ' - Магазин Красота и Здраве')
           this.orderPrice = this.product['price'] + this.delviaryPrice;
       } 
     })
@@ -58,17 +62,19 @@ export class ProductComponent implements OnInit {
 
   onClick(e) {
     e.preventDefault()
-    if(e.target.innerHTML.trim() === 'Доставка') {
-      this.delivary = true;
-      this.comments = false;
+    console.log(e.target.innerHTML.trim() === 'Съдържание')
+    if(e.target.innerHTML.trim() === 'Съдържание') {
+      console.log('tuk')
+      this.content = true;
+      this.upotreba = false;
       this.description = false;
-    } else if (e.target.innerHTML.trim() === 'Коментари'){
-      this.delivary = false;
-      this.comments = true;
+    } else if (e.target.innerHTML.trim() === 'Начин на прием'){
+      this.content = false;
+      this.upotreba = true;
       this.description = false;
     } else {
-      this.delivary = false;
-      this.comments = false;
+      this.content = false;
+      this.upotreba = false;
       this.description = true;
     }
   }

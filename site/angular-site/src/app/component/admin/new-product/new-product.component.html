@@ -22,6 +22,20 @@
                                  #title="ngModel">
                             </div>
                             <div class="form-group">
+                                    <label for="url">Адрес на продукта</label>
+                                    <input type="text" class="form-control" id="url" placeholder="adress"
+                                    name="url"
+                                    [(ngModel)]="productForm.url"
+                                     #url="ngModel">
+                             </div>
+                             <div class="form-group">
+                                    <label for="keywordsString">Keywords, Разделени със запетая</label>
+                                    <input type="text" class="form-control" id="keywordsString" placeholder="Ключови думи"
+                                    name="keywordsString"
+                                    [(ngModel)]="productForm.keywordsString"
+                                     #keywordsString="ngModel">
+                             </div>
+                            <div class="form-group">
                                 <label for="type">Тип на продукт</label>
                                 <input type="text" 
                                 class="form-control" 
@@ -120,7 +134,18 @@
                                  #sydyrjanie="ngModel">
                                 </textarea>
                             </div>
-                            
+                            <div class="form-group">
+                                    <label for="upotreba">Начин на прием</label>
+                                    <textarea 
+                                    class="form-control" 
+                                    id="upotreba" 
+                                    placeholder="Начин на употреба" 
+                                    rows="10"
+                                    name="upotreba"
+                                    [(ngModel)]="productForm.upotreba"
+                                     #upotreba="ngModel">
+                                    </textarea>
+                        </div>
                         </form>
                       </div>
                       <div class="col-xs-6 col-md-6">

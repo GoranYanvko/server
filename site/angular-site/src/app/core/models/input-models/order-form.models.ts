@@ -7,6 +7,7 @@ export class OrderFormModel {
         public city: String,
         public typeOfDelivary: String,
         public address: String,
-        public confirmConditions: Boolean
+        public confirmConditions: Boolean,
+        
     ) {}
 }

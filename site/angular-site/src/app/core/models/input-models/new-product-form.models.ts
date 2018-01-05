@@ -10,5 +10,8 @@ export class NewProductModel {
         public prednaznachenieString: String,
         public sydyrjanie: String,
         public onFirstPage:Boolean,
+        public url:String,
+        public upotreba:String,
+        public keywordsString: String,
     ) {}
 }

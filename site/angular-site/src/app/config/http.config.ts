@@ -1,5 +1,5 @@
 export const httpConfig = {
-    http:'http://localhost:3001',
+    http:'http://164.138.216.56:3001',
     http2: 'http://freegeoip.net/json/',
     login:'/login',
     register: '/register',

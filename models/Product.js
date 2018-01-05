@@ -13,8 +13,9 @@ const ProductShema = mongoose.Schema({
     url: {type:String, require:true, unique:true},
     onFirstPage: {type:Boolean, default:false},
     tags: {type:String, require:false},
-   
-    promotion:{type:Boolean}
+    promotion:{type:Boolean},
+    upotreba: {type:String},
+    keuwords: {type:Array}
 })
 
 const Product = mongoose.model('Product',  ProductShema);

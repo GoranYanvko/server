@@ -92,10 +92,10 @@
                             </li>
                             <li (click)="onClick($event)">
                                 <a href="#" data-toggle="tab" (click)="onClick($event)">
-                                    Доставка </a>
+                                   Съдържание </a>
                             </li>
                             <li (click)="onClick($event)">
-                                <a href="#" data-toggle="tab" (click)="onClick($event)">Коментари</a>
+                                <a href="#" data-toggle="tab" (click)="onClick($event)">Начин на прием</a>
                             </li>
                         </ul>
 
@@ -116,13 +116,13 @@
                                                 </li>
                                             </ul>
                                             <p>
-                                                <span style="font-weight: bold;">Съдържание:</span>
-                                                {{product.sydyrjanie}}
+                                                
                                     </div>
-                                    <div class="tab-pane active" *ngIf="delivary">
-                                        <p>Dostavkata se izvyrshva s kurierska firma ekont</p>
+                                    <div class="tab-pane active" *ngIf="content">
+                                        <p><span style="font-weight: bold;">Съдържание:</span>
+                                            {{product.sydyrjanie}}</p>
                                     </div>
-                                    <div class="tab-pane active" *ngIf="comments">
+                                    <div class="tab-pane active" *ngIf="upotreba">
                                         <p>Все още няма коментари</p>
                                     </div>
                                 </div>
