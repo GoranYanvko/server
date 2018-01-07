@@ -1,0 +1,21 @@
+.clear {
+    clear: both;
+}
+
+@media screen and (max-width: 991px) {
+.col-sm-3 {
+    width: 15%;
+    float: right;
+}
+.nav-bar .menu a {
+    margin-top: 0;
+}
+}
+
+
+@media (min-width: 768px) {
+.col-sm-12 {
+    width: 13%;
+    float: right;
+}
+}

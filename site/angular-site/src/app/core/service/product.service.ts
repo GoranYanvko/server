@@ -43,4 +43,33 @@ export class ProductServices {
         return this.http.post(httpUrl, body, {headers:headers});
     }
 
+    getAllProducts():Observable<Object> {
+        let token = localStorage.getItem('token');
+        let httpUrl:string = url.http + url.getAllProduct;
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`
+            })
+        return this.http.get(httpUrl, {headers:headers});
+    }
+
+    deleteProduct(body):Observable<Object> {
+        let token = localStorage.getItem('token');
+        let httpUrl:string = url.http + url.deleteProduct;
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`
+            })
+        return this.http.post(httpUrl, body, {headers:headers});
+    }
+    updateProduct(body):Observable<Object> {
+        let token = localStorage.getItem('token');
+        let httpUrl:string = url.http + url.updateProduct;
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`
+            })
+        return this.http.post(httpUrl, body, {headers:headers});
+    }
+
 }

@@ -9,3 +9,7 @@ h1 {
 input[type="checkbox"]:hover {
     height: 20px;
 }
+
+img  {
+    width: 55px;
+}

@@ -15,7 +15,7 @@ const ProductShema = mongoose.Schema({
     tags: {type:String, require:false},
     promotion:{type:Boolean},
     upotreba: {type:String},
-    keuwords: {type:Array}
+    keywords: {type:Array}
 })
 
 const Product = mongoose.model('Product',  ProductShema);

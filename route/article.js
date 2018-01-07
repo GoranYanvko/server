@@ -27,7 +27,15 @@ router.post('/add', passport.authenticate('jwt', {session:false}), (req,res,next
     })
  })
 
-
+ router.post('/delete', passport.authenticate('jwt', {session:false}), (req,res, next)=>{
+    if(!req.body.id || !req.body.id===undefined) {
+        res.json({success: false, msg: 'Грешка'});
+    } else  {
+        Article.remove({'_id':req.body.id}).then(info=>{
+            res.json({success:true, msg: 'ok'});
+        })
+    }
+ })
 
  router.post('/getArticle', (req,res,next)=>{
      let skip;

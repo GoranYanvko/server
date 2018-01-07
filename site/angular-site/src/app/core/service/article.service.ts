@@ -51,4 +51,13 @@ export class ArticleServices {
         return this.http.post(httpUrl, body, {headers:headers});
     }
 
+    deleteArticle(body):Observable<Object> {
+        let token = localStorage.getItem('token');
+        let httpUrl:string = url.http + url.deleteArticle;
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`
+            })
+        return this.http.post(httpUrl, body, {headers:headers});
+    }
 }

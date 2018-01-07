@@ -1,21 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('./../models/Order').model('Order');
+const Product = require('./../models/Product').model('Product');
+const ProductInCart = require('./../models/ProductInCart').model('ProductInCart');
 const passport = require('passport');
 const option = require('./../config/options')
+
 
 
 router.post('/new', (req,res)=>{
     let newOrder = new Order(req.body);
     newOrder.save(err=>{
-        if(err) {
-            
+        if(err) {   
             res.json({success: false, msg:'Поръчката не е приета, моля проверете за грешки'})
             res.end();
         } else {
             if(option.mail) {
                 require('./../addons/mail')('order', newOrder)
             }
+           
+            let cursor = Product.find({}).cursor()
+            cursor.eachAsync(x=> {               
+                let q = 0;
+                for (let p of req.body.product) {
+                 let cursor2 = ProductInCart.findById(p).cursor();
+                 cursor2.eachAsync(y=> {
+                    x.quality = x.quality - y.qty;
+                    x.save();
+                 }
+                 )
+                }
+            })
             res.json({success: true, msg:'Поръчката e приета успешно'});
             res.end()
         }

@@ -3,6 +3,7 @@ import {  ArticleFormModel } from '../../../core/models/input-models/article-for
 import { ArticleServices } from '../../../core/service/article.service';
 import { FlashMessagesService } from 'angular2-flash-messages/module/flash-messages.service';
 import { Router } from '@angular/router';
+import { SeoServices } from '../../../core/service/seo.service';
 
 @Component({
   selector: 'admin-new-article',
@@ -10,12 +11,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-article.component.css']
 })
 export class NewArticleComponent implements OnInit {
-  articleForm:  ArticleFormModel
-  constructor(private http: ArticleServices, private msg: FlashMessagesService, private router: Router) { }
+  articleForm:  ArticleFormModel;
+  saveBtn:boolean = true;
+  editBtn:boolean = false;
+  edit: Boolean = false;
+  addArticle: Boolean = false;
+  articles;
+  constructor(
+    private seo: SeoServices,
+    private http: ArticleServices, 
+    private msg: FlashMessagesService, 
+    private router: Router) { }
 
   ngOnInit() {
+    this.seo.changeTitle('Добавяне на статия')
     window.scrollTo(0, 0)
-    this.articleForm = new  ArticleFormModel('', '', '', '');
+    
+    this.loadePage();
+  }
+
+  loadePage() {
+    this.http.getNumOfArticle({"skip":0,"numOfArticle":1000}).subscribe(articles =>{
+        if(articles['success']) {
+          this.articles = articles['articles'];
+          console.log(this.articles)
+        }
+    })
+  };
+
+  onEdit() {
+      this.addArticle = !this.addArticle;
+      this.articleForm = new  ArticleFormModel('', '', '', '');
   }
 
   @Output() changeView: EventEmitter<any> = new EventEmitter();
@@ -37,6 +63,14 @@ export class NewArticleComponent implements OnInit {
     })
   }
 
-
+  remove(e) {
+    console.log(e.target.id);
+    
+    this.http.deleteArticle({'id':e.target.id}).subscribe(data=>{
+    if(data['success']) {
+       this.loadePage();
+    }
+  })
+  }
 
 }

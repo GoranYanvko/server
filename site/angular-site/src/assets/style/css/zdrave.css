@@ -20151,7 +20151,7 @@ body #d_quickcheckout a, body #d_quickcheckout a:hover {
 
 @media(max-width: 991px){
     .top-navbar .row .col.col-sm-2 { width: 14%; }
-    .top-navbar .row .col.col-sm-4 { width: 36%; }
+    .top-navbar .row .col.col-sm-4 { width: 33%; font-size:15px; }
 }
 
 /* ------------------------------------------------------------ *\

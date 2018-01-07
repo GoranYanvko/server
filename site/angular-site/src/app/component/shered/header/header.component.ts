@@ -11,10 +11,12 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   isOrder = false;
+  mobile:Boolean = false;
+  elementClass = 'hidden'
   constructor(public authService: AuthServices,
              private router: Router, 
              private msg: FlashMessagesService,
-             private location: Location) { }
+             private location: Location) {             }
 
   ngOnInit() {
     if(sessionStorage.getItem('order')) {
@@ -32,4 +34,16 @@ export class HeaderComponent implements OnInit {
     this.msg.show('Успешно се отписахте от системата', { cssClass: 'alert-success', timeout: 3000 } )
   }
 
+  showHideMobileMenu() {
+    this.mobile = !this.mobile
+    if (this.mobile === false) {
+      this.elementClass = 'hidden'
+    } else {
+      this.elementClass = 'col-sm-6 center-header clearfix left'
+    }
+  }
+
+  onResize(event) {
+    this.elementClass = 'hidden'
+  }
 }

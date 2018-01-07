@@ -6,7 +6,7 @@
               <div class="row">
                   <div class="col col-md-4 col-sm-4">
                       <div class="pull-left">
-                            <i class="fa fa-credit-card"></i>
+                            <i class="fa fa-credit-card" (window:resize)="onResize($event)"></i>
                             Плащане при доставка
                       </div>
                   </div>
@@ -34,11 +34,39 @@
                           <a [routerLink]="['']"><img src="./assets/imges/zdrave-logo.png" title="Магазин красота и здраве" alt="Магазин красота и здраве" class="img-responsive" /></a>
                       </div>
                       <!-- END LOGO -->
+
+
                       <!-- Mobile menu icon -->
                       <div class="division widget-handle mobile-toggle right visible-sm visible-xs">
-                          <i class="ti-menu"></i>
+                            <i class="ti-menu" (click)="showHideMobileMenu()"></i>
                       </div>
+                      <div class="clear"></div>
+
+                      <div class="col col-md-12 col-sm-12">
+                          <div [class]="elementClass">          
+                                <ul class="menu">
+                                    <li [routerLinkActive]="['active']">
+                                          <a [routerLink]="['']">Магазин</a>
+                                    </li>
+                                    <li [routerLinkActive]="['active']">
+                                       <a [routerLink]="['article']" >
+                                          Статии
+                                      </a>
+                                    </li>
+                                    <li [routerLinkActive]="['active']">
+                                          <a [routerLink]="['polesno']">Полезни материали</a>
+                                    </li>
+                                    <li [routerLinkActive]="['active']">
+                                        <a [routerLink]="['faq']">FAQ</a>
+                                    </li>
+                                    <li [routerLinkActive]="['active']">
+                                        <a [routerLink]="['contact']">Контакти</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
                       <!-- END Mobile menu icon -->
+
                   </div>
                   <!-- Main Menu -->
                   <div class="col-sm-6 center-header clearfix">
