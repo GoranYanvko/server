@@ -37,6 +37,18 @@ router.post('/add', passport.authenticate('jwt', {session:false}), (req,res,next
     }
  })
 
+ router.post('/update', passport.authenticate('jwt', {session:false}), (req,res, next)=>{
+    if(!req.body.id || !req.body.id===undefined) {
+        res.json({success: false, msg: 'Грешка'});
+    } else  {
+        Article.update({'_id':req.body.id}, req.body.article).then(info=>{
+            if(info.ok === 1) {
+                res.json({success:true, msg: 'ok'});
+            }  
+        })
+    }
+ })
+
  router.post('/getArticle', (req,res,next)=>{
      let skip;
      if(req.body.skip === undefined || req.body.skip === undefined) {
