@@ -15,7 +15,11 @@ const ProductShema = mongoose.Schema({
     tags: {type:String, require:false},
     promotion:{type:Boolean},
     upotreba: {type:String},
-    keywords: {type:Array}
+    keywords: {type:Array},
+    country: {type:String},
+    shortDescription: {type:String},
+    status: {type:String, default:"В Наличност"},
+    oldPrice: {type:Number},
 })
 
 const Product = mongoose.model('Product',  ProductShema);
