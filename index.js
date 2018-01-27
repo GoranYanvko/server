@@ -36,13 +36,15 @@ const orders = require('./route/orders')
 const article = require('./route/article')
 const cart = require('./route/cart');
 const slider = require('./route/slider');
+const msg = require('./route/msg')
 app.use('', user)
 app.use('/email', email)
 app.use('/product', product)
 app.use('/orders', orders)
 app.use('/article', article )
 app.use('/cart', cart )
-app.use('/slider', slider )
+app.use('/slider', slider );
+app.use('/msg', msg );
 
 //404 Not Found
 app.all('*', (req, res) => {

@@ -78,5 +78,37 @@ router.get('/all', passport.authenticate('jwt', {session:false}), (req,res,next)
     }
  })
 
+ router.post('/getProductByTag', (req,res, next)=>{
+    if(!req.body.tag) {
+        res.json({success: false, msg: 'Грешка'});
+    } else  {
+        Product.find({keywords:req.body.tag}).limit(3).then(products=>{
+            res.json({success: true, products:products});
+        })
+    }
+ })
+
+ router.post('/randomProduct', (req,res, next)=>{
+    if(!req.body.qty) {
+        res.json({success: false, msg: 'Грешка'});
+    } else  {
+        Product.aggregate([ { $sample: { size: 3} } ]).then(allProducts=>{
+            let products = []
+            for (let product of allProducts) {
+                let obj = {}
+                obj.img = product.img;
+                obj.title = product.title;
+                obj.type = product.type;
+                obj.shortDescription = product.shortDescription;
+                obj.url = product.url;
+                products.push(obj);
+            }
+           
+            res.json({success: true, products:products});
+        })
+    }
+ })
+
+
 
 module.exports = router;
