@@ -98,13 +98,7 @@ router.post('/delete', (req, res, next) => {
 
 router.post('/getCart', (req, res, next) => {
     Cart.findOne({
-        $and: [
-            {
-                _id: req.body.id
-            }, {
-                    status: 'Активна'
-                }
-            ]
+         _id: req.body.id
     })
     .populate({
         path: 'product',
