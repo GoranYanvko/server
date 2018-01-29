@@ -8,7 +8,6 @@ router.post('/newCart', (req, res, next) => {
     req.body.product.idString = Math.random().toString(36).slice(2);
     let newProductInCart = new ProductInCart(req.body.product);
     newProductInCart.save((err, info) => {
-        console.log(info);
         req.body.product = info;
         req.body.idString = req.body.product.idString;
         let newCart = new Cart(req.body)
@@ -53,11 +52,11 @@ router.post('/updateCart', (req, res, next) => {
                     } else {
                         req.body.product.product.idString = data.idString;
                         let newProductInCart = new ProductInCart(req.body.product.product);
-                        console.log(req.body.product.product);
                         newProductInCart.save((err, dataInfo) => {
                             data
                                 .product
                                 .push(dataInfo)
+                                console.log(data)
                             data.save((err, cartInfo) => {
                                 
                                 if (err) {
