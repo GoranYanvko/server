@@ -59,15 +59,15 @@ router.post('/updateCart', (req, res, next) => {
                         let newProductInCart = new ProductInCart(req.body.product.product);
                         newProductInCart.save((err, dataInfo) => {
                             data({$push : {product:dataInfo}});
-                            data
-                                .product
-                                .push(dataInfo)
+                            // data
+                            //     .product
+                            //     .push(dataInfo)
                                  data.save((err, cartInfo) => {
                                 if (err) {
                                     res.json({success: false, msg: 'Полетата не са попълнени коректно'})
                                     res.end();
                                 } else {     
-                                               
+                                    console.log(data);   
                                     res.json({success: true, msg: 'Успешно добавен продукт в кошницата', cartInfo})
                                     res.end();
                                 }
