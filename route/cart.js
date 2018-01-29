@@ -55,12 +55,13 @@ router.post('/updateCart', (req, res, next) => {
                         newProductInCart.save((err, dataInfo) => {
                             data
                                 .product
-                                .push(dataInfo)
+                                .push(dataInfo._id)
                             data.save((err, cartInfo) => {
                                 if (err) {
                                     res.json({success: false, msg: 'Полетата не са попълнени коректно'})
                                     res.end();
-                                } else {                
+                                } else {    
+                                    console.log(data)            
                                     res.json({success: true, msg: 'Успешно добавен продукт в кошницата', cartInfo})
                                     res.end();
                                 }
@@ -110,7 +111,6 @@ router.post('/getCart', (req, res, next) => {
         }
     })
         .then(cart => {
-            console.log(cart);
             res.json(cart);
         })
 })
