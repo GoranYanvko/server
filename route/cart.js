@@ -51,7 +51,8 @@ router.post('/updateCart', (req, res, next) => {
                         })
                     } else {
                         req.body.product.product.idString = data.idString;
-                        let newProductInCart = new ProductInCart(req.body.product.product);
+                        let newProductInCart = new ProductInCart(req.body.product);
+                        console.log(newProductInCart)
                         newProductInCart.save((err, dataInfo) => {
                             data
                                 .product
