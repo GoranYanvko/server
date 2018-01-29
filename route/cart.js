@@ -55,7 +55,7 @@ router.post('/updateCart', (req, res, next) => {
                         newProductInCart.save((err, dataInfo) => {
                             data
                                 .product
-                                .push(dataInfo._id)
+                                .push(dataInfo)
                             data.save((err, cartInfo) => {
                                 console.log(data);
                                 if (err) {
