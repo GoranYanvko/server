@@ -7,7 +7,6 @@ const mongoose = require('mongoose')
 router.post('/newCart', (req, res, next) => {   
     req.body.product.idString = Math.random().toString(36).slice(2);
     let newProductInCart = new ProductInCart(req.body.product);
-    console.log(newProductInCart);
     newProductInCart.save((err, info) => {
         req.body.product = info;
         req.body.idString = req.body.product.idString;
@@ -51,6 +50,7 @@ router.post('/updateCart', (req, res, next) => {
                             }
                         })
                     } else {
+                         console.log(product);
                         req.body.product.product.idString = data.idString;
                         let newProductInCart = new ProductInCart(req.body.product.product);
                         newProductInCart.save((err, dataInfo) => {
