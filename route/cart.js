@@ -54,7 +54,7 @@ router.post('/updateCart', (req, res, next) => {
                         req.body.product.product.idString = data.idString;
                         let newProductInCart = new ProductInCart(req.body.product.product);
                         newProductInCart.save((err, dataInfo) => {
-                            dataInfo.product = OnjectId(dataInfo.produc);
+                            dataInfo.product = ObjectId(dataInfo.produc);
                             data
                                 .product
                                 .push(dataInfo)
