@@ -50,10 +50,10 @@ router.post('/updateCart', (req, res, next) => {
                             }
                         })
                     } else {
-                         console.log(product);
                         req.body.product.product.idString = data.idString;
                         let newProductInCart = new ProductInCart(req.body.product.product);
-                        newProductInCart.save((err, dataInfo) => {
+                        newProductInCart.save((err, data) => {
+                            console.log(data);
                             data
                                 .product
                                 .push(dataInfo)
