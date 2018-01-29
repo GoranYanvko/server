@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Cart = require('./../models/Cart').model('Cart');
 const ProductInCart = require('./../models/ProductInCart').model('ProductInCart');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const ObjectId = require('mongodb').ObjectID
 
 router.post('/newCart', (req, res, next) => {   
     req.body.product.idString = Math.random().toString(36).slice(2);
@@ -52,8 +53,8 @@ router.post('/updateCart', (req, res, next) => {
                     } else {
                         req.body.product.product.idString = data.idString;
                         let newProductInCart = new ProductInCart(req.body.product.product);
-                        console.log(newProductInCart)
                         newProductInCart.save((err, dataInfo) => {
+                            dataInfo.product = OnjectId(dataInfo.produc);
                             data
                                 .product
                                 .push(dataInfo)
