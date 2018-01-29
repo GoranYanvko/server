@@ -25,7 +25,9 @@ router.post('/newCart', (req, res, next) => {
 })
 
 router.post('/updateCart', (req, res, next) => {
+    //id na noviq produkt, kojto dobavihme
     let id = req.body.product.product.product;
+    //namirame koli4kata
     Cart
         .findById(req.body.id)
         .populate({
@@ -34,7 +36,8 @@ router.post('/updateCart', (req, res, next) => {
                 path: 'product'
             }
         })
-        .then(data => {    
+        .then(data => {   
+            //Проверяваме дали има количка с дадено idString и продукт в нея = на по-горе посочения
            ProductInCart
                 .findOne({'product': id, 'idString':data.idString})
                 .then(product => {
@@ -50,14 +53,16 @@ router.post('/updateCart', (req, res, next) => {
                             }
                         })
                     } else {
+                        // Ако няма намерен продукт, към продукта добавяме data.idString
                         req.body.product.product.idString = data.idString;
+                        //Създаваме нов продукт в кошинцата
                         let newProductInCart = new ProductInCart(req.body.product.product);
                         newProductInCart.save((err, dataInfo) => {
+                            data({$push : {product:datainfo}});
                             data
                                 .product
                                 .push(dataInfo)
-                            data.save((err, cartInfo) => {
-                                console.log(data);
+                                 data.save((err, cartInfo) => {
                                 if (err) {
                                     res.json({success: false, msg: 'Полетата не са попълнени коректно'})
                                     res.end();
