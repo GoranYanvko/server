@@ -53,11 +53,11 @@ router.post('/updateCart', (req, res, next) => {
                         req.body.product.product.idString = data.idString;
                         let newProductInCart = new ProductInCart(req.body.product.product);
                         newProductInCart.save((err, dataInfo) => {
-                            console.log(data);
                             data
                                 .product
                                 .push(dataInfo)
                             data.save((err, cartInfo) => {
+                                console.log(cartInfo);
                                 if (err) {
                                     res.json({success: false, msg: 'Полетата не са попълнени коректно'})
                                     res.end();
