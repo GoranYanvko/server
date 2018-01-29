@@ -56,9 +56,8 @@ router.post('/updateCart', (req, res, next) => {
                             data
                                 .product
                                 .push(dataInfo._id)
-                                
                             data.save((err, cartInfo) => {
-                                
+                                console.log(data);
                                 if (err) {
                                     res.json({success: false, msg: 'Полетата не са попълнени коректно'})
                                     res.end();
