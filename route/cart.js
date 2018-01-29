@@ -58,7 +58,7 @@ router.post('/updateCart', (req, res, next) => {
                         //Създаваме нов продукт в кошинцата
                         let newProductInCart = new ProductInCart(req.body.product.product);
                         newProductInCart.save((err, dataInfo) => {
-                            data({$push : {product:datainfo}});
+                            data({$push : {product:dataInfo}});
                             data
                                 .product
                                 .push(dataInfo)
