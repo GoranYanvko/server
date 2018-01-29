@@ -36,6 +36,7 @@ router.post('/updateCart', (req, res, next) => {
             }
         })
         .then(data => {    
+        console.log(data);
            ProductInCart
                 .findOne({'product': id, 'idString':data.idString})
                 .then(product => {
