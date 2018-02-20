@@ -16,7 +16,7 @@ router.post('/new', (req,res)=>{
             res.end();
         } else {
             if(option.mail) {
-                require('./../addons/mail')('order', newOrder)
+                require('./../email/order-email')(newOrder);
             }
            
             let cursor = Product.find({}).cursor()

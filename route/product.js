@@ -89,7 +89,6 @@ router.get('/all', passport.authenticate('jwt', {session:false}), (req,res,next)
  })
 
  router.post('/randomProduct', (req,res, next)=>{
-     console.log('tuk si')
     if(!req.body.qty) {
         res.json({success: false, msg: 'Грешка'});
     } else  {

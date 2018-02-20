@@ -1,3 +1,3 @@
 module.exports = options = {
-    mail: false,
+    mail: true,
 }
