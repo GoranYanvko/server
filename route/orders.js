@@ -64,7 +64,7 @@ router.get('/allOrderToDay', passport.authenticate('jwt', {session:false}), (req
         populate: {
             path: 'product'
         }
-    }).limit(50).then(data=>{
+    }).limit(100).then(data=>{
         res.json(data);
     })
  })
@@ -78,6 +78,9 @@ router.get('/allOrderToDay', passport.authenticate('jwt', {session:false}), (req
  router.post('/editOrderStatus', passport.authenticate('jwt', {session:false}), (req,res, next)=>{
     Order.findById({_id:req.body.id}).then(order=>{
         order.status = req.body.status;
+        if(order.status === "Изпратена" || order.status === "Отказана") {
+            require('./../email/editOrderStatus-email')(order);
+        }
         order.save().then(stats=>{
             res.json({success: true, msg:'Статуса на поръчката е обновен'});
         })
