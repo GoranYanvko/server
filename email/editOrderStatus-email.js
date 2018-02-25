@@ -24,9 +24,13 @@ module.exports = (orderDetails) => {
             <p>Информираме Ви, че Вашата поръчка е с нов статус <b>${orderDetails.status}</b></p> 
             <p>В рамките на три работни дена, ще ви бъде доставена</p>
             <p> Може да следите движението на Вашата пратка в реално време на следния адрес</p>
+            <br />
             <a href="http://www.econt.com/tracking/?num=${orderDetails.econtId}">http://www.econt.com/tracking/?num=${orderDetails.econtId}</a><br/>
             <br />
-            <b>Магазин Красота и здраве</b>  `
+            <p> Моля да обърнете внимание, че посоченият адрес, ще започне да показва резултати</p>
+            <p> <b> <font color="red">След 17.30ч. днес!</b> Преди това ще показва, че не е намерен резултат!</font></p>
+            <br/>
+            <a href="http://magazin-zdrave.com"><b>Магазин Красота и здраве</b></a>  `
         }
         
         transporter.sendMail(mailOptions);
