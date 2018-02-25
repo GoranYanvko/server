@@ -23,6 +23,9 @@ module.exports = (orderDetails) => {
             mailOptions.html = `<b><u>Здравей ${orderDetails.name} </u></b> <br>
             <p>Информираме Ви, че Вашата поръчка е с нов статус <b>${orderDetails.status}</b></p> 
             <p>В рамките на три работни дена, ще ви бъде доставена</p>
+            <p> Може да следите движението на Вашата пратка в реално време на следния адрес</p>
+            <a href="http://www.econt.com/tracking/?num=${orderDetails.econtId}">http://www.econt.com/tracking/?num=${orderDetails.econtId}</a><br/>
+            <br />
             <b>Магазин Красота и здраве</b>  `
         }
         

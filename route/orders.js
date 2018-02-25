@@ -78,7 +78,8 @@ router.get('/allOrderToDay', passport.authenticate('jwt', {session:false}), (req
  router.post('/editOrderStatus', passport.authenticate('jwt', {session:false}), (req,res, next)=>{
     Order.findById({_id:req.body.id}).then(order=>{
         order.status = req.body.status;
-        if(order.status === "Изпратена" || order.status === "Отказана") {
+        if(order.status === "Изпратена" || order.status === "Отказана") { 
+            order.econtId = req.body.econtId;
             require('./../email/editOrderStatus-email')(order);
         }
         order.save().then(stats=>{
