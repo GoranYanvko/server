@@ -61,7 +61,7 @@ router.post('/updateCart', (req, res, next) => {
                             Cart
                             .update({_id:req.body.id},
                             {$push : {product:dataInfo}}).then(info =>{
-                                console.log(info);
+                               
                             })
                             // data
                             //     .product
@@ -71,7 +71,7 @@ router.post('/updateCart', (req, res, next) => {
                                     res.json({success: false, msg: 'Полетата не са попълнени коректно'})
                                     res.end();
                                 } else {     
-                                    console.log(data);   
+                                      
                                     res.json({success: true, msg: 'Успешно добавен продукт в кошницата', cartInfo})
                                     res.end();
                                 }

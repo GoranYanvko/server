@@ -18,19 +18,22 @@ router.post('/new', (req,res)=>{
             if(option.mail) {
                 require('./../email/order-email')(newOrder);
             }
-           
-            let cursor = Product.find({}).cursor()
+           //да се извика в нов моедо
+           //Да се фиксне бъга с продуктите
+            let cursor = Product.find({}).cursor();
+
             cursor.eachAsync(x=> {               
                 let q = 0;
                 for (let p of req.body.product) {
-                 let cursor2 = ProductInCart.findById(p).cursor();
-                 cursor2.eachAsync(y=> {
-                    x.quality = x.quality - y.qty;
-                    x.save();
-                 }
-                 )
-                }
-            })
+                      let cursor2 = ProductInCart.findById(p).cursor();
+                          cursor2.eachAsync( y => {
+                           if(String(x._id) === String(y.product)) {
+                             x.quality = x.quality - y.qty;
+                             x.save();
+                           }
+                         })
+                     }
+                })
             res.json({success: true, msg:'Поръчката e приета успешно'});
             res.end()
         }
