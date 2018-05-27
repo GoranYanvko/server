@@ -25,7 +25,7 @@ module.exports = (orderDetails) => {
             <p>В рамките на три работни дена, ще ви бъде доставена</p>
             <p> Може да следите движението на Вашата пратка в реално време на следния адрес</p>
             <br />
-            <a href="http://www.econt.com/tracking/?num=${orderDetails.econtId}">http://www.econt.com/tracking/?num=${orderDetails.econtId}</a><br/>
+            <a href="https://www.econt.com/services/track-shipment/${orderDetails.econtId}">https://www.econt.com/services/track-shipment/${orderDetails.econtId}</a><br/>
             <br />
             <p> Моля да обърнете внимание, че посоченият адрес, ще започне да показва резултати</p>
             <p> <b> <font color="red">След 17.30ч. днес!</b> Преди това ще показва, че не е намерен резултат!</font></p>
